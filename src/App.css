@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.containerProduct {
+  min-height: 350px;
+}
