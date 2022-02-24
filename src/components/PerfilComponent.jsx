@@ -21,6 +21,8 @@ const style = {
 const PerfilComponent = (props) => {
 
   let listaDeseos
+
+// columnas de la tabla de la lista de deseos
   const columns = [
     {
       field: typesProducto.id,
@@ -47,13 +49,14 @@ const PerfilComponent = (props) => {
     },
   ]; 
 
+// estados y manejadores de modal
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [items, setItems] = useState([])
   const [detailsProduct, setDetailsProduct] = useState(typesProducto)
 
-
+  // obtiene la lista de elementos de lista de deseos y los envia al estado Item
   useEffect(() => {
     setItems(JSON.parse(localStorage.getItem('listaDeseos')) || [])
     return () => {
@@ -61,15 +64,18 @@ const PerfilComponent = (props) => {
     }
   }, [])
 
-
+  // carga detalles del producto a la ventana modal y apertura de la misma
   const detallesProducto = (detailsRow)=> {
     setDetailsProduct(detailsRow.row)
     console.log('detailsRow: ', detailsRow.row)
     handleOpen()
   }
+
+  // elimina el item de la lista de deseos y actualiza estado en el localstorage
   const quitarListaDeseos = (itemDelete) => {
     listaDeseos = (JSON.parse(localStorage.getItem('listaDeseos')) || [])
       let newlistaDeseos = listaDeseos.filter((item)=>{return item.id !== itemDelete.id })    
+      // en caso de quedar vacia la lista de deseos se elimina elemento del localstorage y se cierra ventana modal, actualiza items de la tabla
       if(newlistaDeseos!==undefined){
         localStorage.setItem('listaDeseos', JSON.stringify(newlistaDeseos))
       }

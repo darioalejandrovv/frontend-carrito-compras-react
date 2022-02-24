@@ -14,7 +14,7 @@ const HomeComponent = () => {
     console.log('response: ', response)
     setProductos(response.data)
   }
-
+  // fn de verificacion de existencia de productos en un determinado array, tanto de compras como de deseos 
   const verificacionExistenciaProducto = (arrayItems, item) => {
     let valueReturn
     arrayItems.map((itemOnArray) => {
@@ -28,7 +28,7 @@ const HomeComponent = () => {
     return valueReturn
 
   }
-
+  // agrega el item al carrito de compras  y actualiza su estado en el localstorage
   const agregarCarrito = (item) => {
     carrito = (JSON.parse(localStorage.getItem('carrito')) || [])
     //En caso de contener productos el carrito se verifica si previamente ya había sido agregado dicho producto
@@ -43,7 +43,7 @@ const HomeComponent = () => {
       alert('Producto agregado al carrito')
     }
   }
-
+  // agrega el item a la lista de deseos y actualiza el estado de la lista en el localstorage
   const agregarListaDeseos = (item) => {
     listaDeseos = (JSON.parse(localStorage.getItem('listaDeseos')) || [])
     //En caso de contener items similares la lista de deseos se verifica si previamente ya había sido agregado dicho producto
@@ -58,7 +58,7 @@ const HomeComponent = () => {
       alert('Producto agregado a la lista de deseos')
     }
   }
-
+  // al cargar el componente se carga la lista de productos desde la api
   useEffect(() => {
     obtenerProductos()
     return () => {
@@ -69,6 +69,7 @@ const HomeComponent = () => {
   return (
     <div className="container">
       <div className="row justify-content-around align-items-center">
+        {/* desde el estado se mapea la lista de productos para presentarla en la lista */}
         {productos.map((item, i) => {
           return <ProductComponent className='col-5 my-2 mx-2 containerProduct' key={i} item={item} agregarListaDeseos={agregarListaDeseos} agregarCarrito={agregarCarrito} />
         })

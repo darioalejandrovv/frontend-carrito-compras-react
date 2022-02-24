@@ -6,18 +6,18 @@ import FaceIcon from '@mui/icons-material/Face';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { typesNavBar } from '../types';
 
-export default function NavBar(props) {  
+export default function NavBar(props) {
 
 
-    React.useEffect(() => {
-        console.log(props.state)
-        props.setValueNavigation(props.state)
-    }, [])
-    
+  React.useEffect(() => {
+    console.log(props.state)
+    props.setValueNavigation(props.state)
+  }, [])
 
-    const handleChangeNavigation = (event, newValue) => {
-        props.setValueNavigation(newValue);
-    };
+  // cambia el estado del componente mostrado ('home', 'perfil', 'carrito de compras')
+  const handleChangeNavigation = (event, newValue) => {
+    props.setValueNavigation(newValue);
+  };
 
   return (
     <BottomNavigation sx={{ width: '100vw' }} value={props.valueNavigation} onChange={handleChangeNavigation}>

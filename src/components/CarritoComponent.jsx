@@ -21,7 +21,7 @@ const style = {
 const CarritoComponent = () => {
 
   let carrito
-
+  // columnas de la tabla 
   const columns = [
     {
       field: typesProducto.id,
@@ -49,7 +49,7 @@ const CarritoComponent = () => {
   ];
 
   
-
+// estados y manejadores de modal
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -63,15 +63,18 @@ const CarritoComponent = () => {
     }
   }, [])
 
+  // carga detalles del producto a la ventana modal y apertura de la misma
   const detallesProducto = (detailsRow)=> {
     setDetailsProduct(detailsRow.row)
     console.log('detailsRow: ', detailsRow.row)
     handleOpen()
   }
+
+  // quita elemento del carrito de compras
   const quitarCarrito = (itemDelete) => {
     carrito = (JSON.parse(localStorage.getItem('carrito')) || [])
-    //En caso de contener productos el carrito se verifica si previamente ya había sido agregado dicho producto
       let newCarrito = carrito.filter((item)=>{return item.id !== itemDelete.id })      
+      // en caso de quedar el carrito vacio lo elimina del localstorage, cierra el modal
       if(newCarrito!==undefined){
         localStorage.setItem('carrito', JSON.stringify(newCarrito))
       }

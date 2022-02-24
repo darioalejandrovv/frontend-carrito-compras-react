@@ -28,11 +28,13 @@ const Home = (props) => {
       }}
     >
       <Paper variant="outlined" >
+        {/* Incluye el navbar común a todos los componentes */}
         <NavBar 
           state={props.state}
           valueNavigation={valueNavigation}
           setValueNavigation={setValueNavigation} 
         />
+        {/* deacuerdo al estado del estado del componente del navbar muestra un determinado componente  */}
         {valueNavigation===typesNavBar.Home ? <HomeComponent/>:null}
         {valueNavigation===typesNavBar.Perfil ? <PerfilComponent />: null}
         {valueNavigation===typesNavBar.Carrito ? <CarritoComponent />: null}

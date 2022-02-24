@@ -26,11 +26,13 @@ const ProductComponent = (props) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                {props.agregarListaDeseos
-                    ? (<IconButton aria-label="Agregar a lista de deseos" onClick={() => props.agregarListaDeseos(props.item)}>
-                        <FavoriteIcon />
-                    </IconButton>)
-                    : null
+                {/* dependendiendo de las funciones pasadas al componente mediante props, este renderiza los botones que ejecutan funciones sobre dicho componente */}
+                {
+                    props.agregarListaDeseos
+                        ? (<IconButton aria-label="Agregar a lista de deseos" onClick={() => props.agregarListaDeseos(props.item)}>
+                            <FavoriteIcon />
+                        </IconButton>)
+                        : null
                 }
                 {
                     props.agregarCarrito
